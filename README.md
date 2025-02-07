@@ -1,7 +1,7 @@
 # azcopy-from-filestorage-vm-msi-rbac
-AZCOPY from Azure File Storage using Azure VM Identity MSI or User-Managed Identity example
+AZCOPY from Azure File Storage using Azure VM Identity MSI or User-Managed Identity example.  
 
-An Azure VM using Managed System Identity (MSI) or User-Managed ID can use AZCOPY to read, write, or sync data from an Azure File Storage account file share using Azure RBAC.   
+An Azure VM using Managed System Identity (MSI) or User-Managed ID can use AZCOPY to read, write, or sync data from an Azure File Storage account file share using Azure RBAC.  This is a cloud-only user scenario, currently only supporting OAuth HTTPS style authN/authZ to Azure Files (not SMB drive mapping). Thus HTTPS network ports are used, not SMB port 445. 
 
 This example uses Windows OS as the OS.  Linux VMs in Azure also support Managed Identities
 
@@ -17,9 +17,8 @@ This example uses Windows OS as the OS.  Linux VMs in Azure also support Managed
 - Assign your user as well to create a directory and upload sample files to. I used the Azure Portal "Browse" section. 
 - Create a local folder as destination for downloading or syncing the cloud storage-based files to.  
         Example:   "mkdir c:\demo"
-- Ensure the Azure VM (or other) can reach the Azure File Storage account - review network firewall settings on the storage account and ensure no corporate firewalls or proxy is blocking traffic. Windows Advanced Firewall "File and Printer Sharing SMB-Out" settings. 
-- Ensure the Azure VM can reach EntraID URLs to login.  Use the sample "connect" script from the Azure file share. 
-   - example:  "Test-NetConnection -ComputerName <storageacctname>.file.core.windows.net -Port 445"
+- Ensure the Azure VM (or other) can reach the Azure File Storage account - review network firewall settings on the storage account and ensure no corporate firewalls or proxy is blocking traffic. Windows Advanced Firewall "File and Printer Sharing SMB-Out" settings is NOT NEEDED for AZCOPY, only for SMB drive mappings, such as with storage account key. 
+- Ensure the Azure VM can reach EntraID URLs to login.  
 
 # TASKS
 - Create a script file to run on the VM (Windows PowerShell extension used as example)  
