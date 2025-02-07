@@ -23,20 +23,14 @@ This example uses Windows OS as the OS.  Linux VMs in Azure also support Managed
 # TASKS
 - Create a script file to run on the VM (Windows PowerShell extension used as example)  
     Example:   **``C:\path\azcopyfile.ps1``**
-- Use the one of the following AZCOPY LOGIN commands (system managed or user-managed identity) in this script file to "authorize" using the VM's identity and to then "copy" or "sync" files from a blob storage container. 
+- Use the one of the following AZCOPY LOGIN commands (system managed or user-managed identity) in this script file to "authorize" using the VM's identity and to then "copy" or "sync" files 
 - **azcopy login --login-type=MSI**
 - **azcopy login --identity --identity-client-id "[ServiceIdentityClientID]"**
 
  Note that other AZCOPY command options can be used once authorized, not just the "copy" example below  
-- **''azcopy copy 'https://<storageaccountname>.file.core.windows.net/<directory-path>' 'C:\demo' --recursive --preserve-smb-permissions=true --preserve-smb-info=true``**
+- **azcopy copy 'https://<storageaccountname>.file.core.windows.net/<directory-path>' 'C:\demo' --recursive --preserve-smb-permissions=true --preserve-smb-info=true**
 
 Note that "xx" double-quotes are for CMD-line and 'xx' single-quotes for PowerShell
-
-
-## NOTES on using User Managed Identity
-- https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-authorize-azure-active-directory#authorize-by-using-a-user-assigned-managed-identity
-- https://github.com/Azure/azure-storage-azcopy/wiki/azcopy_login
-
 
 ## NOTES on TASKS
 - Used "--recursive" to copy the subfolders
@@ -57,6 +51,10 @@ Note that "xx" double-quotes are for CMD-line and 'xx' single-quotes for PowerSh
 - In the "Program/script" field, enter **powershell.exe**.
 - In the "Add arguments" field, enter **-File "C:\path\azcopyfile.ps1"**
 - Click Next and then Finish to create the task.
+
+# NOTES on using User Managed Identity
+- https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-authorize-azure-active-directory#authorize-by-using-a-user-assigned-managed-identity
+- https://github.com/Azure/azure-storage-azcopy/wiki/azcopy_login
 
 # LINKS
 - https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10 
